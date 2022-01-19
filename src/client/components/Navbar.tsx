@@ -10,22 +10,21 @@ const Navbar = () => {
     const [isAuthed, setIsAuthed] = useState(false)
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        APIService('/auth/validate')
-            .then(res => {
+    //     APIService('/auth/validate')
+    //         .then(res => {
 
-                const tokenStatus = res.message === 'valid';
-                console.log({ tokenStatus });
-                setIsAuthed(tokenStatus)
-                setIsAuthed(true);
+    //             const tokenStatus = res.message === 'valid';
+    //             console.log({ tokenStatus });
+    //             setIsAuthed(tokenStatus)
 
-            })
-            .catch(e => {
-                console.log(e)
-            })
+    //         })
+    //         .catch(e => {
+    //             console.log(e)
+    //         })
 
-    }, [])
+    // }, [])
 
 
 

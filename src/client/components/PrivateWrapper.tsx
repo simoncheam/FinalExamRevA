@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router';
+import { Navigate, Outlet, useLocation, useNavigate } from 'react-router';
 import { APIService } from '../services/APIService';
 
 const PrivateWrapper = ({ children }: PrivateRouteProps) => {
@@ -7,6 +7,7 @@ const PrivateWrapper = ({ children }: PrivateRouteProps) => {
     const [isAuthed, setIsAuthed] = useState(false)
     const nav = useNavigate();
     const loc = useLocation();
+    const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
 
 
@@ -20,29 +21,39 @@ const PrivateWrapper = ({ children }: PrivateRouteProps) => {
 
                 setIsAuthed(tokenStatus);
                 console.log({ tokenStatus });
+                setIsAuthed(true)
+                setIsLoaded(true)
+
             })
             .catch(error => {
                 console.log(error);
-                // alert('not authorized, please login')
-                // nav('/login')
-
+                setIsLoaded(true)
             });
 
 
-    }, [])
+    }, [isLoaded])
+
+    if (!isLoaded) { return <> Loading...</> }
+
+
+    if (!isAuthed) {
+        alert('not authorized, please login...')
+        return <Navigate to='/login' />
+    } else {
 
 
 
 
-    return (
+        return (
 
-        <>
+            <>
 
-            {children}
-            <Outlet />
+                {children}
+                <Outlet />
 
-        </>
-    );
+            </>
+        );
+    }
 };
 
 

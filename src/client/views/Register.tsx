@@ -24,6 +24,7 @@ const Register = () => {
             password: password,
         })
             .then(data => {
+                localStorage.setItem('token', data.token)
 
                 alert('Welcome')
                 nav(`/books`)

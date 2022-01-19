@@ -24,14 +24,20 @@ const Login = () => {
         })
             .then(data => {
 
+
+                localStorage.setItem('token', data.token)
+                console.log(data.token);
                 alert('Welcome back')
                 nav(`/books`)
+
             })
             .catch(e => {
                 console.log(e)
                 alert('Invalid credentials')
             })
     }
+
+
 
 
     return <div>
