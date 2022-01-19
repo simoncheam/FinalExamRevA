@@ -1,6 +1,5 @@
 // ✅ OK
 import { Query } from "../index";
-import { MysqlResponse } from "../models";
 import { Books, BooksJoined } from "../../types"
 
 //get all joined

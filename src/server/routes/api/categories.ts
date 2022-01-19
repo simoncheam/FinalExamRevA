@@ -1,13 +1,10 @@
+// ✅ OK
 import * as express from 'express';
-import { ReqUser } from '../../types';
-
 import categoriesDB from '../../database/queries/categories'
-import { Categories } from '../../types';
-import { tokenCheck } from '../../middleware/tokenCheck.mw';
 
 const router = express.Router();
 
-//get all
+//get all ✅ OK
 router.get('/', async (req, res) => {
 
     try {
@@ -24,7 +21,7 @@ router.get('/', async (req, res) => {
 
 
 
-//get one by id
+//get one by id✅ OK
 
 router.get('/:id', async (req, res) => {
 
@@ -40,3 +37,5 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: "A server errors occurred", error: error.sqlMessage });
     }
 })
+
+export default router;

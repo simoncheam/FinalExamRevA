@@ -1,6 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import config, { jwt_config } from '../../config';
 import usersDB from '../../database/queries/users';
+// ✅ OK
 import { Router } from 'express';
 import { generateHash } from '../../utils/passwords'
 

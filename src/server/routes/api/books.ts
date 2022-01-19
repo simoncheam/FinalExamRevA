@@ -2,7 +2,7 @@ import * as express from 'express';
 import { Books, ReqUser } from '../../types';
 import booksDB from '../../database/queries/books'
 
-import { tokenCheck } from '../../middleware/tokenCheck.mw';
+import { tokenCheck } from '../../middleware/tokenCheck.mw'; //!!!!!!!
 
 const router = express.Router();
 
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 
 })
 
-//get one by id
+//get one by id ✅ OK
 router.get('/:id', async (req, res) => {
 
     const id = Number(req.params.id);
@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-// POST
+// POST ✅ OK
 router.post('/', tokenCheck, async (req: ReqUser, res) => {
 
     const { title, author, price, categoryid }: Books = req.body;
@@ -66,7 +66,7 @@ router.post('/', tokenCheck, async (req: ReqUser, res) => {
 })
 
 
-//PUT
+//PUT ✅ OK
 router.put('/:id', tokenCheck, async (req: ReqUser, res) => {
 
     const { title, author, price, categoryid }: Books = req.body;
@@ -100,7 +100,7 @@ router.put('/:id', tokenCheck, async (req: ReqUser, res) => {
 
 
 
-// DELETE
+// DELETE ✅ OK
 
 router.delete('/:id', tokenCheck, async (req, res) => {
 

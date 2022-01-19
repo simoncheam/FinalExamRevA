@@ -1,6 +1,6 @@
+// ✅ OK
 import { Query } from "../index";
-import { MysqlResponse } from "../models";
-import { Books, Categories, Users } from "../../types"
+import { Categories } from "../../types"
 
 
 const get_all = () => Query<Categories[]>("SELECT * FROM Categories");
