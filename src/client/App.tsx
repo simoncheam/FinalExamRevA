@@ -1,20 +1,40 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import BookDetail from './views/BookDetail';
+import Books from './views/Books';
+import Home from './views/Home';
 
 
 const App = (props: AppProps) => {
-	const [greeting, setGreeting] = useState<string>('');
 
-	
+
 
 	return (
-		<main className="container my-5">
-			<h1 className="text-primary text-center">Hello </h1>
-		</main>
+		<BrowserRouter>
+			<Navbar />
+
+			<Routes>
+
+				<Route path='/' element={<Home />}></Route>
+				<Route path='/books' element={<Books />}></Route>
+				<Route path='/books/:id' element={<BookDetail />}></Route>
+
+
+
+
+
+			</Routes>
+
+
+
+
+		</BrowserRouter>
 	);
 };
 
-interface AppProps {}
+interface AppProps { }
 
 
 
