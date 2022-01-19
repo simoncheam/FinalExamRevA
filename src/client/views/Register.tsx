@@ -13,7 +13,11 @@ const Register = () => {
     const handleSubmitButton = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        APIService(`/auth/register`, 'post', {
+        if (!userName || !email || !password) {
+            return alert('🚨 fill out all fields')
+        }
+
+        APIService(`/auth/register`, 'POST', {
 
             name: userName,
             email: email,
@@ -43,19 +47,40 @@ const Register = () => {
             <section className="row justify-content-center">
                 <div className="col-md-6">
                     <div className="card shadow">
-                        <div className="card-header"> Register Today:</div>
+                        <div className="card-header"> Create your account get started today:</div>
 
                         <div className="card-body">
                             <h1>Complete fields below: </h1>
                             <form className="form-group my-2">
-                                <label>name :</label>
-                                <input className="form-control" value={userName} />
+                                <label>Username :</label>
+                                <input className="form-control m-2"
+                                    value={userName}
+                                    placeholder='username'
+                                    type='text'
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUserName(e.target.value)}
+                                />
 
                                 <label>email:</label>
-                                <input className="form-control" value={email} />
+
+                                <input className="form-control m-2"
+                                    value={email}
+                                    placeholder='your email'
+                                    type='text'
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                                />
 
                                 <label>password:</label>
-                                <input className="form-control" value={password} />
+
+                                <input className="form-control m-2"
+                                    value={password}
+                                    placeholder='password'
+                                    type='password'
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+
+
+                                />
+
+                                <button onClick={handleSubmitButton} className='btn btn-success mt-2'> Register Now</button>
 
 
                             </form>
