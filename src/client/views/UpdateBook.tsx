@@ -14,7 +14,7 @@ const UpdateBook = () => {
 
     const [bookTitle, setBookTitle] = useState('')
     const [bookAuthor, setBookAuthor] = useState('')
-    const [bookPrice, setBookPrice] = useState<number>(null)
+    const [bookPrice, setBookPrice] = useState<number>(0)
 
     const [selectedCategoryId, setSelectedCategoryId] = useState<number>()
     const [categories, setCategories] = useState<Categories[]>([])
@@ -58,7 +58,7 @@ const UpdateBook = () => {
 
 
 
-    }, [])
+    }, [isLoaded])
 
     if (!book || !categories) { return <> Loading...</> }
 
@@ -115,10 +115,6 @@ const UpdateBook = () => {
 
 
 
-
-
-
-
     return <div>
         <h1 className="display-3 m-3 text-center"> Update Book </h1>
 
@@ -132,35 +128,57 @@ const UpdateBook = () => {
                         <div className="card-body">
                             <h1>Complete updates below: </h1>
                             <form className="form-group my-2">
+
+
+                                <label>Select Category :</label>
+
+                                <select value={selectedCategoryId} onChange={handleCategoryIdSelectUpdate} className='form-control'>
+
+                                    <option value={0} >Select a Category </option>
+
+
+                                    {categories.map(cat => (
+
+
+                                        <option key={`category-${cat.id}-${cat.name}`} value={cat.id}>
+                                            {cat.name}
+                                        </option>
+
+                                    ))}
+                                </select>
+
+
+
                                 <label>Title :</label>
                                 <input className="form-control m-2"
                                     value={bookTitle}
-                                    placeholder='username'
+                                    placeholder={bookTitle}
                                     type='text'
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUserName(e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBookTitle(e.target.value)}
                                 />
 
-                                <label>email:</label>
+                                <label>Author:</label>
 
                                 <input className="form-control m-2"
-                                    value={email}
-                                    placeholder='your email'
+                                    value={bookAuthor}
+                                    placeholder={bookAuthor}
                                     type='text'
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBookAuthor(e.target.value)}
                                 />
 
-                                <label>password:</label>
+                                <label>Price:</label>
 
                                 <input className="form-control m-2"
-                                    value={password}
-                                    placeholder='password'
-                                    type='password'
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                                    value={bookPrice}
+                                    // placeholder={bookPrice}
+                                    type='number'
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBookPrice(Number(e.target.value))}
 
 
                                 />
 
-                                <button onClick={handleSubmitButton} className='btn btn-success mt-2'> Register Now</button>
+                                <button onClick={handleSubmitButton} className='btn btn-success mt-2'> Update </button>
+                                <button onClick={handleDeleteButton} className='btn btn-danger mt-2'> Delete </button>
 
 
                             </form>

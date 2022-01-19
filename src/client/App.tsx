@@ -2,11 +2,14 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import PrivateWrapper from './components/PrivateWrapper';
 import BookDetail from './views/BookDetail';
 import Books from './views/Books';
 import Home from './views/Home';
 import Login from './views/Login';
+import NewBook from './views/NewBook';
 import Register from './views/Register';
+import UpdateBook from './views/UpdateBook';
 
 
 const App = (props: AppProps) => {
@@ -29,6 +32,12 @@ const App = (props: AppProps) => {
 
 
 
+				<Route path='/' element={<PrivateWrapper />}>
+
+					<Route path='books/new' element={<NewBook />} />
+					<Route path='books/:id/update' element={<UpdateBook />} />
+
+				</Route>
 
 			</Routes>
 

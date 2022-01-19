@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Outlet, useLocation, useNavigate } from 'react-router';
 import { APIService } from '../services/APIService';
 
-const PrivateWrapper = () => {
+const PrivateWrapper = ({ children }: PrivateRouteProps) => {
 
     const [isAuthed, setIsAuthed] = useState(false)
     const nav = useNavigate();
+    const loc = useLocation();
+
 
 
     useEffect(() => {
@@ -20,11 +22,13 @@ const PrivateWrapper = () => {
             })
             .catch(error => {
                 console.log(error);
+                alert('not authorized, please login')
+                nav('/login')
 
             });
 
 
-    }, [])
+    }, [loc.pathname])
 
 
 
@@ -32,9 +36,18 @@ const PrivateWrapper = () => {
     return <div>
         <h1 className="display-3 m-3 text-center"> Private Wrapper </h1>
 
+        {children}
+        <Outlet />
+
     </div>;
 };
 
+
+interface PrivateRouteProps {
+    path?: string;
+    exact?: boolean;
+    children?: React.ReactNode;
+}
 export default PrivateWrapper;
 
 
