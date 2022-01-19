@@ -19,27 +19,30 @@ const PrivateWrapper = ({ children }: PrivateRouteProps) => {
                 const tokenStatus = res.message === 'valid'
 
                 setIsAuthed(tokenStatus);
+                console.log({ tokenStatus });
             })
             .catch(error => {
                 console.log(error);
-                alert('not authorized, please login')
-                nav('/login')
+                // alert('not authorized, please login')
+                // nav('/login')
 
             });
 
 
-    }, [loc.pathname])
+    }, [])
 
 
 
 
-    return <div>
-        <h1 className="display-3 m-3 text-center"> Private Wrapper </h1>
+    return (
 
-        {children}
-        <Outlet />
+        <>
 
-    </div>;
+            {children}
+            <Outlet />
+
+        </>
+    );
 };
 
 

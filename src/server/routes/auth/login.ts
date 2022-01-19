@@ -22,6 +22,7 @@ router.post('/', passport.authenticate('local'), async (req: ReqUser, res) => {
         console.log(`token : ${token}`);
 
         res.status(200).json({ message: "successful login!", token });
+        console.log(token);
 
     } catch (error) {
         console.log(error);

@@ -9,15 +9,15 @@ const router = Router();
 
 router.get('/', tokenCheck, async (req: ReqUser, res) => {
 
-    try {
+    res.status(200).json({ message: 'valid' });
+    // try {
 
-        res.status(200).json({ message: 'valid' });
-    } catch (error) {
+    // } catch (error) {
 
-        res.status(404).json({ message: 'not valid', error })
+    //     res.status(404).json({ message: 'not valid', error })
 
 
-    }
+    // }
 
 
 })
